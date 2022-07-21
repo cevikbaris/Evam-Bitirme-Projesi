@@ -291,6 +291,15 @@
     "message": "Customer deleted."
 }
 ```
+- SQL operations for customer deletion in spring boot.
+
+```java
+Hibernate: delete from bills where bill_id=?
+Hibernate: delete from bills where bill_id=?
+Hibernate: delete from payments where payment_id=?
+Hibernate: delete from customers where id=?
+```
+
 
 ### Bill Response and Request JSON examples.
 
