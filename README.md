@@ -1,6 +1,8 @@
 # Spring Project Report
 
 ### Customer Response and Request JSON examples.
+------------
+&nbsp;
 
 - **POST Request**. Path: http://localhost:8080/v1/customers/createCustomer -> Create a new customer
 
@@ -29,6 +31,7 @@
     "path": "/v1/customers/createCustomer"
 }
 ```
+&nbsp;
 - **POST Request** with wrong values. Path: http://localhost:8080/v1/customers/createCustomer
 ```json
 {
@@ -49,6 +52,7 @@
     ]
 }
 ```
+&nbsp;
 - **UPDATE Request**. Path: http://localhost:8080/v1/customers/updateCustomer -> Update Customer. Find customer by UUID and change the given name and surname. It can update  name, surname or both.
 ```json
 {
@@ -75,6 +79,7 @@
 
 }
 ```
+&nbsp;
 - **UPDATE Request**. Wrong UUID. Path: http://localhost:8080/v1/customers/updateCustomer 
 ```json
 {
@@ -93,7 +98,7 @@
 }
 
 ```
-
+&nbsp;
 - **UPDATE Request**. Empty Name and Surname. Path: http://localhost:8080/v1/customers/updateCustomer  
 ```json
 {
@@ -115,7 +120,7 @@
     ]
 }
 ```
-
+&nbsp;
 - **UPDATE Request**. Wrong UUID format. Path: http://localhost:8080/v1/customers/updateCustomer 
 
 ```json
@@ -135,7 +140,7 @@
     "message": "Malformed JSON request"
 }
 ```
-
+&nbsp;
 - **GET Request** Path: http://localhost:8080/v1/customers/getAllCustomers -> Get all customers. After bill added to the customer and some bills paid.
 
 >**http://localhost:8080/v1/customers/getAllCustomers**
@@ -216,7 +221,7 @@
     "path": "/v1/customers/getAllCustomers"
 }
 ```
-
+&nbsp;
 - **GET Request**. Path: http://localhost:8080/v1/customers/getCustomerById/{id} -> Get Customer with UUID. Get Customer's bills and payment. Returns paid and unpaid bills and the total of paid bills.
 
 >**http://localhost:8080/v1/customers/getCustomerById/7d85ff1d-2236-4ed8-9e46-0c297afbac5d**
@@ -265,7 +270,7 @@
     }
 }
 ```
-
+&nbsp;
 - If there is no Customer belonging to the entered UUID. For the previous request.
 
 ```json
@@ -276,7 +281,7 @@
     "message": "Wrong id number. Customer can not found."
 }
 ```
-
+&nbsp;
 - **DELETE Request** Path: http://localhost:8080/v1/customers/deleteCustomer/{id} -> Delete Customer by UUID.  When the customer is deleted, the customer's payments and invoices are deleted.
 
 >**http://localhost:8080/v1/customers/deleteCustomer/b84f1a5c-73ac-4ffe-9026-6b1d0c66504d**
@@ -299,9 +304,11 @@ Hibernate: delete from bills where bill_id=?
 Hibernate: delete from payments where payment_id=?
 Hibernate: delete from customers where id=?
 ```
-
+&nbsp;
+&nbsp;
 
 ### Bill Response and Request JSON examples.
+------------
 
 - **POST Request**. Path: http://localhost:8080/v1/bills/createBill -> Create a new Bill with Subscriber number(UUID) and Bill price. 
 ```json
@@ -326,6 +333,7 @@ Hibernate: delete from customers where id=?
     }
 }
 ```
+&nbsp;
 - **POST Request**. Negative Bill price. Path: http://localhost:8080/v1/bills/createBill
 ```json
 {
@@ -345,6 +353,7 @@ Hibernate: delete from customers where id=?
     ]
 }
 ```
+&nbsp;
 - **POST Request**. When Bill price not BigDecimal Path: http://localhost:8080/v1/bills/createBill
 ```json
 {
@@ -361,7 +370,7 @@ Hibernate: delete from customers where id=?
     "message": "Malformed JSON request"
 }
 ```
-
+&nbsp;
 - **GET Request**. Path: http://localhost:8080/v1/bills/getBillsWithCustomerId/{id} -> Find Customer's bills. If there are bills get list of bills. If there is no bill (if all bills are paid or empty) show message that all bills are paid or show message that there are no bills.
 
 
@@ -394,6 +403,7 @@ Hibernate: delete from customers where id=?
 }
 ```
 
+
 - **GET Request** Get Customer which does not has any bill. Path:http://localhost:8080/v1/bills/getBillsWithCustomerId/{id}
 
 >**http://localhost:8080/v1/bills/getBillsWithCustomerId/0504da10-54d8-4b4c-bef5-702ac6100527**
@@ -422,9 +432,9 @@ Hibernate: delete from customers where id=?
     "message": "The Customer has no debt and unpaid bill."
 }
 ```
-
+&nbsp;
 - **GET Request** Path: http://localhost:8080/v1/bills/getBillWithId/{billId} -> Find bill with bill ID. Show whether the bill has been paid or not. 
-
+ - For unpaid bill.
 >**http://localhost:8080/v1/bills/getBillWithId/8** 
 - **Response**
 ```json
@@ -442,7 +452,7 @@ Hibernate: delete from customers where id=?
     }
 }
 ```
-
+ - For paid bill.
 >**http://localhost:8080/v1/bills/getBillWithId/5**
 - **Response**
 ```json
@@ -460,7 +470,7 @@ Hibernate: delete from customers where id=?
     }
 }
 ```
-
+ - When bill does not exist.
 >**http://localhost:8080/v1/bills/getBillWithId/7**
 - **Response**
 ```json
@@ -471,7 +481,7 @@ Hibernate: delete from customers where id=?
     "message": "Bill not found."
 }
 ```
-
+&nbsp;
 - **GET Request** Path: http://localhost:8080/v1/bills/getAllBills -> Show all bills. All invoices in the database, independent of the customer.
 
 >**http://localhost:8080/v1/bills/getAllBills**
@@ -521,7 +531,7 @@ Hibernate: delete from customers where id=?
     ]
 }
 ```
-
+&nbsp;
 - **DELETE Request** Path: http://localhost:8080/v1/bills/deleteBill/{billId} -> Delete the bill belonging to the bill ID. 
 
 >**http://localhost:8080/v1/bills/deleteBill/7**
@@ -536,8 +546,10 @@ Hibernate: delete from customers where id=?
     "message": "Bill deleted."
 }
 ```
-
+&nbsp;
+&nbsp;
 ### Payment Request and Response JSON examples
+------------
 
 - **GET Request**. Path: http://localhost:8080/v1/payments/payBills/{subscriberNo} -> Pay all bills of Customer. Find Customer with subscriber no (UUID). Return the total price of all paid invoices.
 
@@ -559,7 +571,7 @@ Hibernate: delete from customers where id=?
     }
 }
 ```
-
+&nbsp;
 - **GET Request**. After all bills paid try pay again. Path: http://localhost:8080/v1/payments/payBills/{subscriberNo} 
 
 >**http://localhost:8080/v1/payments/payBills/b538f97d-3113-46c2-868e-333ee4560610**
@@ -573,7 +585,7 @@ Hibernate: delete from customers where id=?
     "message": "There is no unpaid bill."
 }
 ```
-
+&nbsp;
 - **GET Request**. Try to pay when the customer doesn't have an invoice. Path: http://localhost:8080/v1/payments/payBills/{subscriberNo} 
 
 >**http://localhost:8080/v1/payments/payBills/0504da10-54d8-4b4c-bef5-702ac6100527**
