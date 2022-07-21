@@ -371,6 +371,7 @@ Hibernate: delete from customers where id=?
 }
 ```
 &nbsp;
+&nbsp;
 - **GET Request**. Path: http://localhost:8080/v1/bills/getBillsWithCustomerId/{id} -> Find Customer's bills. If there are bills get list of bills. If there is no bill (if all bills are paid or empty) show message that all bills are paid or show message that there are no bills.
 
 
@@ -433,7 +434,9 @@ Hibernate: delete from customers where id=?
 }
 ```
 &nbsp;
+&nbsp;
 - **GET Request** Path: http://localhost:8080/v1/bills/getBillWithId/{billId} -> Find bill with bill ID. Show whether the bill has been paid or not. 
+ 
  - For unpaid bill.
 >**http://localhost:8080/v1/bills/getBillWithId/8** 
 - **Response**
