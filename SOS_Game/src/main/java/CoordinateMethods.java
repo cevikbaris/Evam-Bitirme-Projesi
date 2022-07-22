@@ -3,19 +3,19 @@ import java.util.Scanner;
 
 public class CoordinateMethods {
 
-    int replayCountPlayer = 0; // when do SOS you  can replay. This is that count.
-    int replayCountComputer = 0;
+    private int replayCountPlayer = 0; // when do SOS you  can replay. This is that count.
+    private int replayCountComputer = 0;
 
-    int xAxis; // user will assign value to these variables.
-    int yAxis;
+    private int xAxis; // user will assign value to these variables.
+    private int yAxis;
 
-    final int PLAYER = 0; // value of PLAYER and COMPUTER
-    final int COMPUTER = 1;
+    private final int PLAYER = 0; // value of PLAYER and COMPUTER
+    private final int COMPUTER = 1;
 
     Random random = new Random(); // for computer's coordinate choosing process.
     Scanner scanner = new Scanner(System.in);
 
-    int gameSize; // will get from game class.
+    private int gameSize; // will get from game class.
 
     // This class is used to search horizontally, vertically and diagonally according to the given index.
     private CoordinateControls coordinateControls;
